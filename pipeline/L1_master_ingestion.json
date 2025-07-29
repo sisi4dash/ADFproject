@@ -1,0 +1,66 @@
+{
+	"name": "L1_master_ingestion",
+	"properties": {
+		"activities": [
+			{
+				"name": "Set_frst_variable",
+				"type": "SetVariable",
+				"dependsOn": [],
+				"policy": {
+					"secureOutput": false,
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"variableName": "Var_trigger",
+					"value": {
+						"value": "@if(equals(pipeline().parameters.Trigger,null),pipeline().TriggerName,pipeline().parameters.Trigger)",
+						"type": "Expression"
+					}
+				}
+			},
+			{
+				"name": "Exec ingest Raw",
+				"type": "ExecutePipeline",
+				"dependsOn": [
+					{
+						"activity": "Set_frst_variable",
+						"dependencyConditions": [
+							"Succeeded"
+						]
+					}
+				],
+				"policy": {
+					"secureInput": false
+				},
+				"userProperties": [],
+				"typeProperties": {
+					"pipeline": {
+						"referenceName": "L2_RAW_INGESTION",
+						"type": "PipelineReference"
+					},
+					"waitOnCompletion": true,
+					"parameters": {
+						"Trigger": {
+							"value": "@pipeline().parameters.Trigger",
+							"type": "Expression"
+						}
+					}
+				}
+			}
+		],
+		"parameters": {
+			"Trigger": {
+				"type": "string"
+			}
+		},
+		"variables": {
+			"Var_trigger": {
+				"type": "String"
+			}
+		},
+		"annotations": [],
+		"lastPublishTime": "2025-07-27T14:24:00Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

@@ -1,0 +1,19 @@
+{
+	"name": "L5_excel",
+	"properties": {
+		"activities": [
+			{
+				"name": "Wait1",
+				"type": "Wait",
+				"dependsOn": [],
+				"userProperties": [],
+				"typeProperties": {
+					"waitTimeInSeconds": 1
+				}
+			}
+		],
+		"annotations": [],
+		"lastPublishTime": "2025-07-27T14:23:57Z"
+	},
+	"type": "Microsoft.DataFactory/factories/pipelines"
+}

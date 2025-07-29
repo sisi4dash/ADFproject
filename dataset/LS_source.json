@@ -1,0 +1,50 @@
+{
+	"name": "LS_source",
+	"properties": {
+		"linkedServiceName": {
+			"referenceName": "AzureBlobStorage1",
+			"type": "LinkedServiceReference",
+			"parameters": {
+				"storage_acc_loc": {
+					"value": "@dataset().blob_storage_acc_loc",
+					"type": "Expression"
+				}
+			}
+		},
+		"parameters": {
+			"blob_storage_acc_loc": {
+				"type": "string"
+			},
+			"col_delimter": {
+				"type": "string"
+			},
+			"file": {
+				"type": "string"
+			}
+		},
+		"annotations": [],
+		"type": "DelimitedText",
+		"typeProperties": {
+			"location": {
+				"type": "AzureBlobStorageLocation",
+				"fileName": {
+					"value": "@dataset().file",
+					"type": "Expression"
+				},
+				"container": {
+					"value": "@dataset().blob_storage_acc_loc",
+					"type": "Expression"
+				}
+			},
+			"columnDelimiter": {
+				"value": "@dataset().col_delimter",
+				"type": "Expression"
+			},
+			"escapeChar": "\\",
+			"firstRowAsHeader": true,
+			"quoteChar": "\""
+		},
+		"schema": []
+	},
+	"type": "Microsoft.DataFactory/factories/datasets"
+}

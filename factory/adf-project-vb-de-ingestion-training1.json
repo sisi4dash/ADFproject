@@ -1,0 +1,9 @@
+{
+	"name": "adf-project-vb-de-ingestion-training1",
+	"location": "eastus",
+	"identity": {
+		"type": "SystemAssigned",
+		"principalId": "d89ec56d-0146-4b56-b72c-6a61054026be",
+		"tenantId": "3d03ecff-5885-435e-8277-c193de3761c5"
+	}
+}
